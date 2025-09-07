@@ -1,0 +1,5 @@
+@media print, screen {
+    .test {
+        background: red !important;
+    }
+}

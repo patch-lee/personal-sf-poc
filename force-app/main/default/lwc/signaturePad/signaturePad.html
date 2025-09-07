@@ -1,0 +1,63 @@
+<template>
+  <lightning-card
+    class="slds-size_full"
+    icon-name="standard:record_signature_task"
+    title={title}
+  >
+    <div class="c-container">
+      <lightning-layout vertical-align="space" multiple-rows="true">
+        <lightning-layout-item
+          flexibility="auto"
+          padding="around-small"
+          class="slds-text-align_center slds-size_full"
+          ><canvas
+            name="canvasItem"
+            class="signingCanvas"
+            width={scaledWidth}
+            height={scaledHeight}
+          ></canvas
+        ></lightning-layout-item>
+        <lightning-layout-item
+          flexibility="auto"
+          padding="around-small"
+          class="slds-size_full"
+        >
+          <lightning-layout horizontal-align="center">
+            <!-- <template if:false={hasPreviousButton}>
+              <lightning-layout-item padding="around-small">
+                <lightning-button
+                  variant="destructive"
+                  label={previousButtonLabel}
+                  ontouchstart={handlePreviousClick}
+                  onclick={handlePreviousClick}
+                ></lightning-button>
+              </lightning-layout-item>
+            </template> -->
+            <lightning-layout-item padding="around-small"
+              ><lightning-button
+                label={clearButtonLabel}
+                ontouchstart={handleClearClick}
+                onclick={handleClearClick}
+              ></lightning-button
+            ></lightning-layout-item>
+            <lightning-layout-item padding="around-small"
+              ><lightning-button
+                label="Undo"
+                ontouchstart={handleUndoClick}
+                onclick={handleUndoClick}
+              ></lightning-button
+            ></lightning-layout-item>
+            <lightning-layout-item padding="around-small"
+              ><lightning-button
+                variant="brand"
+                label={saveButtonLabel}
+                ontouchstart={handleSaveClick}
+                onclick={handleSaveClick}
+              ></lightning-button
+            ></lightning-layout-item>
+          </lightning-layout>
+        </lightning-layout-item>
+      </lightning-layout>
+    </div>
+  </lightning-card>
+</template>

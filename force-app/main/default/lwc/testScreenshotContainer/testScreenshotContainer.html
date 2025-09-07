@@ -1,0 +1,165 @@
+<template>
+    <lightning-card>
+        <div slot="title">
+            <h1>Project Table</h1>
+        </div>
+
+        <div class="slds-p-around_small">
+            <lightning-layout multiple-rows vertical-align="end">
+                <!-- Settings section -->
+                <lightning-layout-item size="12">
+                    <div class="slds-size_full">
+                        <lightning-input type="number" label="Number of weeks"></lightning-input>
+                    </div>
+                </lightning-layout-item>
+
+                <!-- Also component -->
+                <lightning-layout-item size="12" padding="around-small">
+                    <h1 class="slds-text-title_bold">Sprints</h1>
+                </lightning-layout-item>
+                <lightning-layout-item size="6">
+                    <div class="slds-size_full">
+                        <lightning-input type="text" label="Sprint Name"></lightning-input>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item size="2" padding="horizontal-medium">
+                    <div class="slds-size_full">
+                        <lightning-input type="number" label="Start week"></lightning-input>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item size="2" padding="horizontal-medium">
+                    <div class="slds-size_full">
+                        <lightning-input type="number" label="End week"></lightning-input>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item size="2" padding="horizontal-medium">
+                    <div class="slds-size_full slds-text-align_center">
+                        <lightning-button label="Delete"></lightning-button>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item size="6">
+                    <div class="slds-size_full">
+                        <lightning-input type="text" label="Sprint Name"></lightning-input>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item size="2" padding="horizontal-medium">
+                    <div class="slds-size_full">
+                        <lightning-input type="number" label="Start week"></lightning-input>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item size="2" padding="horizontal-medium">
+                    <div class="slds-size_full">
+                        <lightning-input type="number" label="End week"></lightning-input>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item size="2" padding="horizontal-medium">
+                    <div class="slds-size_full slds-text-align_center">
+                        <lightning-button label="Delete"></lightning-button>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item size="12" padding="around-medium">
+                    <div class="slds-size_full slds-text-align_center">
+                        <lightning-button label="Add Row"></lightning-button>
+                    </div>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="12" padding="around-small">
+                    <h1 class="slds-text-title_bold">Teams</h1>
+                </lightning-layout-item>
+                <lightning-layout-item size="12">
+                    <lightning-accordion>
+                        <lightning-accordion-section name="A" label="Consultant Stream">
+                            <lightning-layout multiple-rows vertical-align="end">
+                                <lightning-layout-item size="10">
+                                    <div class="slds-size_full">
+                                        <lightning-input type="text" label="Team Name"></lightning-input>
+                                    </div>
+                                </lightning-layout-item>
+                                <lightning-layout-item size="2" padding="horizontal-medium">
+                                    <div class="slds-size_full slds-text-align_center">
+                                        <lightning-button label="Delete"></lightning-button>
+                                    </div>
+                                </lightning-layout-item>
+                                <lightning-layout-item size="10">
+                                    <div class="slds-size_full">
+                                        <lightning-input type="text" label="Team Name"></lightning-input>
+                                    </div>
+                                </lightning-layout-item>
+                                <lightning-layout-item size="2" padding="horizontal-medium">
+                                    <div class="slds-size_full slds-text-align_center">
+                                        <lightning-button label="Delete"></lightning-button>
+                                    </div>
+                                </lightning-layout-item>
+                                <lightning-layout-item size="12" padding="around-medium">
+                                    <div class="slds-size_full slds-text-align_center">
+                                        <lightning-button label="Add Row"></lightning-button>
+                                    </div>
+                                </lightning-layout-item>
+                            </lightning-layout>
+                        </lightning-accordion-section>
+                        <lightning-accordion-section name="B" label="Developer Stream">
+                            <lightning-layout multiple-rows vertical-align="end">
+                                <lightning-layout-item size="10">
+                                    <div class="slds-size_full">
+                                        <lightning-input type="text" label="Team Name"></lightning-input>
+                                    </div>
+                                </lightning-layout-item>
+                                <lightning-layout-item size="2" padding="horizontal-medium">
+                                    <div class="slds-size_full slds-text-align_center">
+                                        <lightning-button label="Delete"></lightning-button>
+                                    </div>
+                                </lightning-layout-item>
+                                <lightning-layout-item size="10">
+                                    <div class="slds-size_full">
+                                        <lightning-input type="text" label="Team Name"></lightning-input>
+                                    </div>
+                                </lightning-layout-item>
+                                <lightning-layout-item size="2" padding="horizontal-medium">
+                                    <div class="slds-size_full slds-text-align_center">
+                                        <lightning-button label="Delete"></lightning-button>
+                                    </div>
+                                </lightning-layout-item>
+                                <lightning-layout-item size="12" padding="around-medium">
+                                    <div class="slds-size_full slds-text-align_center">
+                                        <lightning-button label="Add Row"></lightning-button>
+                                    </div>
+                                </lightning-layout-item>
+                            </lightning-layout>
+                        </lightning-accordion-section>
+                    </lightning-accordion>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="12" padding="around-small">
+                    <h1 class="slds-text-title_bold">Result Table</h1>
+                </lightning-layout-item>
+                <!-- Display section (will be created as a new component)-->
+                <lightning-layout-item size="12" padding="around-small">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Test</th>
+                                <th>Test</th>
+                                <th>Test</th>
+                                <th>Test</th>
+                                <th>Test</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Test</td>
+                                <td>Test</td>
+                                <td>Test</td>
+                                <td>Test</td>
+                                <td>Test</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+
+        <div slot="footer" class="slds-text-align_right">
+            <lightning-button label="Print table" onclick={testPrint}></lightning-button>
+        </div>
+    </lightning-card>
+</template>
