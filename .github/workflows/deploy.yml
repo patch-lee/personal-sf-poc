@@ -26,7 +26,8 @@ jobs:
     # can specify which OS this VM should run on.
     # In this case, we are going to run our commands on the latest version
     # of ubuntu
-    runs-on: ubuntu-latest
+    # runs-on: ubuntu-latest
+    runs-on: salesforce/cli:2.106.3-full
     if: ${{ github.actor != 'dependabot[bot]' }}
     steps:
       # Now we install nodejs in the VM, and specify version 14
@@ -117,7 +118,6 @@ jobs:
       # # Install SFDX scanner
       # - name: 'Installing SFDX scanner'
       #   run: sfdx plugins:install @salesforce/sfdx-scanner
-      - uses: salesforce/cli:2.106.3-full
 
       # Prior to setting up this workflow, you have to create a Github Secret
       # that contains the sfdx url of the integration/qa org.
