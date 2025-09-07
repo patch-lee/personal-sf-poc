@@ -1,0 +1,56 @@
+# Unique name for this workflow
+name: Validate PR on develop branch
+
+# Definition when the workflow should run
+on:
+  # The workflow will run whenever an event happens on a pull request
+  pull_request:
+    types: [opened, synchronize]
+    branches: [develop]
+    paths:
+      - "force-app/**"
+
+# Jobs to be executed when the above conditions are met
+jobs:
+  # This is the name of the job. You can give it whatever name you want
+  validate-deployment-on-develop-org:
+    runs-on: ubuntu-latest
+    if: ${{ github.actor != 'dependabot[bot]' }}
+    steps:
+      - name: Install SF CLI
+        run: |
+          wget https://developer.salesforce.com/media/salesforce-cli/sf/channels/stable/sf-linux-x64.tar.xz
+          mkdir -p ~/cli/sf
+          export GITHUB_PATH=~/cli/sf/bin:$GITHUB_PATH
+
+      - name: "Installing sfdx git delta"
+        run: |
+          echo y | sf plugins install sfdx-git-delta
+          sf plugins
+
+      - name: "Checkout source code"
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      # Generate Open SSL cert for JWT Authentication
+      - name: "Decrypt SSL"
+        run: openssl aes-256-cbc -d -in ./config/server.key.enc -out ./config/server.key -pass pass:${{ secrets.SF_CERT_PASS }}
+
+      # Authenticate to org using the URL stored in the text file
+      - name: "Authenticate to Integration Org"
+        run: sf org auth login -username ${{ secrets.SF_USERNAME }} -f ./config/server.key -i ${{ secrets.SF_ORG_CLIENT_ID }} -r ${{ secrets.SF_ORG_URL }} -s -a poc
+
+      # We use SFDX Git Delta to create a directory with only the metadata that has changed.
+      # this allows us to deploy only those changes, as opposed to deploying the entire branch.
+      # This helps reducing deployment times
+      - name: "Create delta packages for new, modified or deleted metadata"
+        run: |
+          mkdir pckg
+          sf sgd:source:delta --to "HEAD" --from "HEAD^1" --output pckg/ --generate-delta --source force-app/ -i .forceignore
+
+      - name: "Print deployment dir tree"
+        run: tree pckg
+
+      - name: "Deploy changes to org"
+        run: if [ -d "pckg/force-app" ]; then sf project deploy validate --source-dir pckg/force-app --ignore-conflicts; fi
