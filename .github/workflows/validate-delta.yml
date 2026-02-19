@@ -15,14 +15,9 @@ jobs:
   # This is the name of the job. You can give it whatever name you want
   validate-deployment-on-develop-org:
     runs-on: ubuntu-latest
+    container: salesforce/cli:latest-full
     if: ${{ github.actor != 'dependabot[bot]' }}
     steps:
-      - name: Install SF CLI
-        run: |
-          wget https://developer.salesforce.com/media/salesforce-cli/sf/channels/stable/sf-linux-x64.tar.xz
-          mkdir -p ~/cli/sf
-          export GITHUB_PATH=~/cli/sf/bin:$GITHUB_PATH
-
       - name: "Installing sfdx git delta"
         run: |
           echo y | sf plugins install sfdx-git-delta
